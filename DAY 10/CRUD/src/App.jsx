@@ -10,64 +10,17 @@ const App = () => {
   let handleDelete = (id)=>{
     let newArr = playerData.filter( elem => elem.id !== id )
     setPlayerData(newArr)
+    localStorage.setItem("players",JSON.stringify(newArr))
   } 
 
 
 
 
-  const [playerData, setPlayerData] = useState([
-  {
-    "id": 1,
-    "image": "https://documents.iplt20.com/ipl/IPLHeadshot2025/6.png",
-    "name": "Virat Kohli",
-    "position": "batter",
-    "team": "RCB",
-    "matches": 237,
-    "runs": 7263,
-    "titles": 0
-  },
-  {
-    "id": 2,
-    "image": "https://documents.iplt20.com/ipl/IPLHeadshot2025/9.png",
-    "name": "Rohit Sharma",
-    "position": "Batter",
-    "team": "MI",
-    "matches": 243,
-    "runs": 6211,
-    "titles": 5
-  },
-  {
-    "id": 3,
-    "image": "https://documents.iplt20.com/ipl/IPLHeadshot2025/57.png",
-    "name": "MS Dhoni",
-    "position": "WicketKeeper",
-    "team": "CSK",
-    "matches": 250,
-    "runs": 5082,
-    "titles": 5
-  },
-  {
-    "id": 4,
-    "image": "https://documents.iplt20.com/ipl/IPLHeadshot2025/2.png",
-    "name": "Jasprit Bumrah",
-    "position": "Bowler",
-    "team": "MI",
-    "matches": 133,
-    "runs": 56,
-    "titles": 5
-  },
-  {
-    "id": 5,
-    "image": "https://documents.iplt20.com/ipl/IPLHeadshot2025/12.png",
-    "name": "KL Rahul",
-    "position": "WicketKeeper",
-    "team": "LSG",
-    "matches": 118,
-    "runs": 4163,
-    "titles": 0
-  }
-])
-
+  const [playerData, setPlayerData] = useState( 
+    JSON.parse(localStorage.getItem("players")) ||
+    []
+  )
+  
   const [toggle, setToggle] = useState(true)
 
   const [editUser, setEditUser] = useState(null)

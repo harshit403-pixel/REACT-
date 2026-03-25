@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { nanoid } from 'nanoid'
 
-const AddPLayer = ({setPlayerData, setToggle , editUser , setEditUser}) => {
+const AddPLayer = ({setPlayerData, setToggle , editUser , setEditUser, playerData}) => {
     let { register, handleSubmit, reset, formState: { errors , isValid } } = useForm(
         {
             defaultValues:editUser,
@@ -15,19 +15,24 @@ const AddPLayer = ({setPlayerData, setToggle , editUser , setEditUser}) => {
         
         if(editUser){
             setPlayerData((prev)=>{
-                return prev.map((val)=>{
+                let updatedPlayers = prev.map((val)=>{
                     return val.id=== editUser.id?{...val,...data}:val;
-
                 })
+
+                localStorage.setItem("players", JSON.stringify(updatedPlayers))
+                return updatedPlayers
             })
+            
             setEditUser(null)
         }
         
         else{
             
+            let arr = [...playerData , {...data , id: nanoid()}]
 
-
-            setPlayerData((prev)=> [...prev , {...data , id: nanoid()}])
+            setPlayerData(arr)
+           
+             localStorage.setItem("players", JSON.stringify(arr))
 
         }
                                     setToggle((prev)=> !prev)
