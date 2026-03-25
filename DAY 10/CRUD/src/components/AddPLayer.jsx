@@ -32,7 +32,7 @@ const AddPLayer = ({setPlayerData, setToggle , editUser , setEditUser}) => {
         }
                                     setToggle((prev)=> !prev)
                             reset()
-                        }
+                        } 
 
     return (
         <div className='h-[65%] w-full mt-22 flex justify-center items-center ' >
