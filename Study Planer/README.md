@@ -1,12 +1,36 @@
-# React + Vite
+# Study Session Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite app for planning study sessions using:
 
-Currently, two official plugins are available:
+- `useState`
+- `react-hook-form`
+- Context API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Add a study session with topic, subject, duration, priority, and date
+- View sessions in a responsive card layout
+- Delete sessions
+- Priority-based styling
+- Bonus: total study duration summary
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project structure
+
+```text
+study-session-planner/
+public/
+src/
+  components/
+    SessionCard.jsx
+    SessionForm.jsx
+    SessionList.jsx
+  context/
+    SessionContext.jsx
+  App.jsx
+  main.jsx
+  styles.css
+index.html
+package.json
+README.md
+```
