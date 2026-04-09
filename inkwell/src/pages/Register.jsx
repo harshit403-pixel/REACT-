@@ -6,7 +6,7 @@ import { UserContext } from '../context/BlogUser'
 
 const Register = () => {
 
-      let {setNewUser} = useContext(UserContext)
+      let {setNewUser , setUser} = useContext(UserContext)
         
         let navigate = useNavigate()
     
@@ -15,7 +15,9 @@ const Register = () => {
     
         let onSubmit = ((data) => {
             setNewUser(data)
+            setUser(data)
             localStorage.setItem("newUser", JSON.stringify(data))
+            localStorage.setItem("user", JSON.stringify(data))
              navigate("/")
             reset()
         })
