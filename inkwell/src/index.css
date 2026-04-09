@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: first;
+    src: url(./assets/fonts/mainFont.woff2);
+}
+@font-face {
+    font-family: second;
+    src: url(./assets/fonts/font2.woff2);
+}
+@theme{
+    --font-first: first , "sans-serif";
+    --font-second: second , "sans-serif";
+}
+
+*{
+    scrollbar-width: none;
+}
