@@ -4,6 +4,8 @@ import MainLayout from '../layouts/MainLayout'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import Dashboard from '../pages/Dashboard'
+import Article from '../pages/Article'
 
 const MainRoute = () => {
 
@@ -25,9 +27,17 @@ const MainRoute = () => {
                 {
                     path:"register",
                     element : <Register/>
-                }
+                },
+                                {
+                    path:"dashboard",
+                    element :<Dashboard />
+                },
+                                        {
+                            path:"new-article",
+                            element: <Article/>
+                        }
             ]
-        }
+        },
 
     ])
 

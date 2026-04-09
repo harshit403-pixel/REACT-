@@ -52,13 +52,23 @@ const Navbar = () => {
           <span className='rounded-full  flex justify-center items-center text-black  h-[40px] w-[40px] bg-[#0a6a5b]'>{user?.name?.charAt(0) || newUser?.name?.charAt(0)}</span>
           <p className='text-white font-semibold'>{user?.name || newUser?.name}</p>
           
-          <div className={`absolute  top-[50px] right-0 right-5 bg-[#0a0e11] border z-14 border-white/20 rounded-lg pt-2 w-[200px] ${nameWindow ? 'block' : 'hidden'}`}>
-          <div className='border-b  border-white/20'>
+          <div
+  className={`absolute top-[50px] right-5 w-[250px] pt-2 
+  bg-[#0a0e11] border border-white/20 rounded-lg z-14
+  transition-all duration-300 ease-out
+  ${nameWindow 
+    ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' 
+    : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+  }`}
+>
+          <div className='border-b py-2 border-white/20'>
             <h1 className='text-white text-[14px] pl-3 ' >{user && newUser.name}</h1>
             <p className='text-white/60 text-[12px] pl-3 '>{user && newUser.email}</p>
             <p className='text-white/60 text-[12px] pl-3 '>{user && newUser.accountType}</p>
           </div>
-          <div className='text-white flex items-center  border-b border-white/20 pl-3 py-2 hover:bg-[#033830] cursor-pointer '>
+          <div
+          onClick={()=> {navigate("/dashboard")}}
+          className='text-white flex items-center  border-b border-white/20 pl-3 py-2 hover:bg-[#033830] cursor-pointer '>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-layout-dashboard mr-2 h-4 w-4" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
             <p className='text-[14px]'>Dashboard</p>
           </div>

@@ -16,7 +16,7 @@ const Home = () => {
 
      <div className='flex justify-between'>
       <h1 className='text-xl font-bold text-white font-second'>latest Articles</h1>
-      <p className='text-sm  text-white/50 font-second'>3 articles</p>
+      <p className='text-sm  text-white/50 font-second'>{posts.length} articles</p>
      </div>
 
      <div className='font-second flex gap-5 flex-wrap  '>
