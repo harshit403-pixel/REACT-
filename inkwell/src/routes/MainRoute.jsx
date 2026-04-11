@@ -6,6 +6,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Dashboard from '../pages/Dashboard'
 import Article from '../pages/Article'
+import ArticleDetails from '../pages/ArticleDetails'
 
 const MainRoute = () => {
 
@@ -15,33 +16,37 @@ const MainRoute = () => {
         {
             path: "",
             element: <MainLayout />,
-            children : [
+            children: [
                 {
                     path: "",
-                    element : <Home />
+                    element: <Home />
                 },
                 {
-                    path:"login",
-                    element : <Login/>
+                    path: "login",
+                    element: <Login />
                 },
                 {
-                    path:"register",
-                    element : <Register/>
+                    path: "register",
+                    element: <Register />
                 },
-                                {
-                    path:"dashboard",
-                    element :<Dashboard />
+                {
+                    path: "dashboard",
+                    element: <Dashboard />
                 },
-                                        {
-                            path:"new-article",
-                            element: <Article/>
-                        }
+                {
+                    path: "new-article",
+                    element: <Article />
+                },
+                {
+                    path: "article/detail/:id",
+                    element: <ArticleDetails />
+                }
             ]
         },
 
     ])
 
-  return (<RouterProvider router={router} />)
+    return (<RouterProvider router={router} />)
 }
 
 export default MainRoute

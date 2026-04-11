@@ -7,6 +7,7 @@ const CreatePost = () => {
 
 
       let {posts, setPosts}  = useContext(PostContext)
+      let user = JSON.parse(localStorage.getItem("user"))
 
 
     let navigate = useNavigate()
@@ -26,7 +27,7 @@ const onSubmit = (data) => {
     excerpt: data.excerpt,
 
     authorId: "author-1",
-    authorName: "Harshit",
+    authorName: user.name || "Unknown Author",
 
     published: true,
 

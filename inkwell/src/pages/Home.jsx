@@ -22,7 +22,7 @@ const Home = () => {
      <div className='font-second flex gap-5 flex-wrap  '>
 
 
-      {posts.map((user) => (<Posts key={user.id} user={user} />))}
+      {posts.map((post) => (<Posts key={post.id} post={post} />))}
 
 
 

@@ -9,7 +9,10 @@ const ArticlePost = ({ post }) => {
        <div className='flex flex-col gap-1'>
                 <h1 className='text-white font-bold'>{post.title}</h1>
         <p className='text-white/60 '>{post.excerpt}</p>
-        <p className='text-white/60  '>{post.createdAt}</p>
+        <p className='text-white/60  '>{new Date(post.createdAt).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"})}</p>
        </div>
 
        <div
