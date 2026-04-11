@@ -7,8 +7,10 @@ export const ContextProvider = ({ children }) => {
     return JSON.parse(localStorage.getItem("posts")) || [];
   });
 
+  const [editPost, setEditPost] = useState(null)
+
   return (
-    <PostContext.Provider value={{ posts, setPosts }}>
+    <PostContext.Provider value={{ posts, setPosts , editPost, setEditPost }}>
       {children}
     </PostContext.Provider>
   );

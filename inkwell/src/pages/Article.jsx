@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { PostContext } from "../context/BlogPost";
@@ -6,19 +6,57 @@ import { PostContext } from "../context/BlogPost";
 const CreatePost = () => {
 
 
-      let {posts, setPosts}  = useContext(PostContext)
+      let {posts, setPosts, editPost, setEditPost}  = useContext(PostContext)
       let user = JSON.parse(localStorage.getItem("user"))
 
 
     let navigate = useNavigate()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid }
-  } = useForm({ mode: "onChange" });
+
+
+
+const {
+  register,
+  handleSubmit,
+  reset,
+  formState: { errors, isValid }
+} = useForm({ mode: "onChange" });
+
+useEffect(() => {
+  if (editPost) {
+    reset({
+      ...editPost,
+      tags: editPost.tags?.join(", ") 
+    });
+  }
+}, [editPost, reset]);
 
 const onSubmit = (data) => {
+
+
+  if (editPost) {
+    const updatedPosts = posts.map((post) =>
+      post.id === editPost.id
+        ? {
+            ...post,
+            ...data,
+            tags: data.tags
+              ? data.tags.split(",").map(tag => tag.trim())
+              : [],
+            updatedAt: new Date().toISOString()
+          }
+        : post
+    );
+
+    setPosts(updatedPosts);
+    localStorage.setItem("posts", JSON.stringify(updatedPosts));
+
+    setEditPost(null); 
+    navigate("/dashboard");
+    reset();
+
+    return; 
+  }
+
   const newPost = {
     id: Date.now().toString(),
 
@@ -27,7 +65,7 @@ const onSubmit = (data) => {
     excerpt: data.excerpt,
 
     authorId: "author-1",
-    authorName: user.name || "Unknown Author",
+    authorName: user?.name || "Unknown Author",
 
     published: true,
 
@@ -39,11 +77,12 @@ const onSubmit = (data) => {
     updatedAt: new Date().toISOString()
   };
 
-    setPosts(prevPosts => [newPost, ...prevPosts]);
-    localStorage.setItem("posts", JSON.stringify([newPost, ...posts]));
-        navigate("/dashboard")
+  const updatedPosts = [newPost, ...posts];
 
+  setPosts(updatedPosts);
+  localStorage.setItem("posts", JSON.stringify(updatedPosts));
 
+  navigate("/dashboard");
   reset();
 };
 
@@ -53,7 +92,7 @@ const onSubmit = (data) => {
         onClick={()=> navigate("/dashboard")}
         className="text-white/60 max-w-[65%] mx-auto flex items-center mb-5 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left mr-2 h-4 w-4" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg> Back to Dashboard </p>
         <div className="max-w-[65%] mx-auto bg-[#0c1013] border border-white/20 rounded-xl p-6">
-                  <h1 className="text-2xl font-bold mb-6">Create New Article</h1>
+                  <h1 className="text-2xl font-bold mb-6">{editPost ? "Edit Article" : "Create New Article"}</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 

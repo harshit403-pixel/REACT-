@@ -8,7 +8,6 @@ const Dashboard = () => {
     let user = JSON.parse(localStorage.getItem("newUser"))
     let { posts } = useContext(PostContext)
    
-    console.log(posts)
   return (
     <div className='font-second w-full h-full flex justify-center pt-30 '>
       <div className='min-w-[65%] flex flex-col gap-5' >
@@ -29,15 +28,15 @@ const Dashboard = () => {
       <div className='flex w-full justify-between gap-5 '>
         <div className='border h-[120px] flex-1 p-3  flex flex-col gap-2 justify-center rounded-xl  border-white/20 bg-[#0a0e11] '> 
         <p className='text-white/60 '>Total Articles</p>
-        <h1 className='text-white font-bold text-xl'>0</h1>
+        <h1 className='text-white font-bold text-xl'>{posts.length}</h1>
           </div>
         <div className='border h-[120px] flex-1 p-3  flex flex-col gap-2 justify-center rounded-xl  border-white/20 bg-[#0a0e11] '> 
         <p className='text-white/60 '>Published</p>
-        <h1 className='text-green-500 font-bold text-xl'>0</h1>
+        <h1 className='text-green-500 font-bold text-xl'>{posts.filter(post => post.published).length}</h1>
           </div>
         <div className='border h-[120px] flex-1 p-3  flex flex-col gap-2 justify-center rounded-xl  border-white/20 bg-[#0a0e11] '> 
         <p className='text-white/60 '>Drafts</p>
-        <h1 className='text-white font-bold text-xl'>0</h1>
+        <h1 className='text-white font-bold text-xl'>{posts.filter(post => !post.published).length}</h1>
           </div>
       </div>
 

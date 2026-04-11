@@ -2,7 +2,7 @@ import React from 'react'
 
 const ArticleDetailUI = ({ post }) => {
 
-    console.log(post)
+   
   return (
  <article>
 

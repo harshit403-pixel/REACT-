@@ -7,7 +7,7 @@ const Navbar = () => {
   const [nameWindow, setNameWindow] = useState(false)
 
   let{user, newUser} = useContext(UserContext)
-  console.log(user)
+
 
   let navigate = useNavigate()
 
