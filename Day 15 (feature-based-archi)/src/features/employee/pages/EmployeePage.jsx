@@ -1,5 +1,8 @@
 import React from "react";
 import { Plus, Search } from "lucide-react";
+import BreadCrumbs from "../../../shared/components/BreadCrumbs";
+import { useNavigates } from "../../../shared/hooks/useNavigates";
+import { Outlet, useLocation } from "react-router";
 
 const employees = [
   {
@@ -37,15 +40,27 @@ const employees = [
 ];
 
 const EmployeePage = () => {
+  let {pathname} = useLocation()
+  let {navigate} = useNavigates()
+  console.log(pathname)
   return (
-    <div className="flex-1 bg-gray-100 min-h-screen p-6">
+    <div className="flex-1 bg-gray-100  min-h-screen relative p-6">
 
+
+      {
+        pathname === "/dashboard/employee/profile" ?      <div className="absolute z-11 top-30 ">
+
+        < Outlet />
+      </div> : null
+      }
+
+
+
+  
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <p className="text-xs text-gray-400 uppercase">
-            Organization • Employee Directory
-          </p>
+          <BreadCrumbs/>
           <h1 className="text-2xl font-bold text-gray-800">
             Employee Management
           </h1>
@@ -140,7 +155,9 @@ const EmployeePage = () => {
 
             <span className="text-gray-600">{emp.joined}</span>
 
-            <span className="text-blue-600 cursor-pointer text-sm">
+            <span
+            onClick={()=> navigate("/dashboard/employee/profile")}
+            className="text-blue-600 cursor-pointer text-sm">
               View
             </span>
           </div>
@@ -163,7 +180,9 @@ const EmployeePage = () => {
           </div>
         </div>
       </div>
-    </div>
+</div>
+
+
   );
 };
 

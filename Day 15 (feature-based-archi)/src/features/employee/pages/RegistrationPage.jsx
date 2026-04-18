@@ -1,4 +1,5 @@
 import React from "react";
+import BreadCrumbs from "../../../shared/components/BreadCrumbs";
 
 const RegistrationPage = () => {
   return (
@@ -6,10 +7,7 @@ const RegistrationPage = () => {
       
       {/* Header */}
       <div className="mb-6">
-        <p className="text-sm text-blue-600 cursor-pointer mb-2">
-          ← Back to Directory
-        </p>
-
+       <BreadCrumbs/>
         <h1 className="text-2xl font-bold text-gray-800">
           Register New Employee
         </h1>

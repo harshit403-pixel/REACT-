@@ -5,10 +5,13 @@ import {
   HelpCircle,
   Download,
 } from "lucide-react";
+import BreadCrumbs from "../../../shared/components/BreadCrumbs";
 
 const HomePage = () => {
   return (
+    
     <div className="flex-1 bg-gray-100 min-h-screen p-6">
+      <BreadCrumbs/>
 
       {/* Top Bar */}
       <div className="flex items-center justify-between mb-6">

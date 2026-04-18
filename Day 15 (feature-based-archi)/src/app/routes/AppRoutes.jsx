@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute'
 import EmployeePage from '../../features/employee/pages/EmployeePage'
 import RegistrationPage from '../../features/employee/pages/RegistrationPage'
 import { Settings } from 'lucide-react'
+import EmployeeProfile from '../../features/employee/pages/EmployeeProfile'
 
 const AppRoutes = () => {
     let router = createBrowserRouter([
@@ -49,13 +50,21 @@ const AppRoutes = () => {
                     },
                     {
                         path:"employee",
-                        element: <EmployeePage/>
+                        element: <EmployeePage/>,
+                        children:[
+                            {
+                        path:"profile",
+                        element: <EmployeeProfile/>
+                        
+                    }
+                        ]
                     },
                     
                     {
                         path:"registration",
                         element: <RegistrationPage/>
-                    }
+                    },
+                    
                     
                 ]
             }
